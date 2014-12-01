@@ -101,10 +101,14 @@ static int32_t fd_uart1;
  */
 static int32_t fd_uart2;
 
-/** \brief Periodic Task Counter
+/** \brief Sincronizador Task Counter
  *
  */
 static uint32_t SincronizadorTask_Counter;
+
+/** \brief Control General Task Counter
+ *
+ */
 static uint32_t ControlGeneralTask_Counter;
 
 /*==================[external data definition]===============================*/
@@ -239,60 +243,49 @@ TASK(SerialEchoTask)
    }
 }
 
-/** \brief Periodic Task
+/** \brief Sincronizador Task
  *
- * This task is activated by the Alarm ActivatePeriodicTask.
- * This task copies the status of the inputs bits 0..3 to the output bits 0..3.
- * This task also blinks the output 4
+ * This task is activated by the Alarm ActivateSincronizadorTask.
+ * This task updates inclinometer, magnetometer, RF signal sensor and sensor fin de carrera.
+ * Each of those updates routines puts values in ListaEventos queue.
  */
 TASK(SincronizadorTask)
 {
-   /*
-    * Example:
-    *    Read inputs 0..3, update outputs 0..3.
-    *    Blink output 4
-    */
-
-   /* variables to store input/output status */
-   uint8_t inputs = 0, outputs = 0;
-
-   /* read inputs */
-   ciaaPOSIX_read(fd_in, &inputs, 1);
-
-   /* read outputs */
-   ciaaPOSIX_read(fd_out, &outputs, 1);
-
-   /* update outputs with inputs */
-   outputs &= 0xF0;
-   outputs |= inputs & 0x0F;
-
-   /* blink */
-   outputs ^= 0x10;
-
-   /* write */
-   ciaaPOSIX_write(fd_out, &outputs, 1);
-
    /* Print Task info */
    SincronizadorTask_Counter++;
    ciaaPOSIX_printf("Sincronizador Task: %d\n", SincronizadorTask_Counter);
+
+   /* update inclinometer values*/
    inclinometroUpdate();
+   /* update magnetonometer values*/
    magnetometroUpdate();
+   /* update RF signal sensor values*/
    sensorSenalRFUpdate();
+   /* update  sensor fin de carrera values*/
    sensorFinCarreraUpdate();
    /* end PeriodicTask */
    TerminateTask();
 }
 
+/** \brief Control General Task
+ *
+ * This task is activated by the Alarm ActivateControlGeneralTask.
+ * This task checks periodically the ListaEventos queue.
+ * If this queue has an element, this task process it and feeds
+ * a state chart (not implemented yet)
+  */
 TASK(ControlGeneralTask)
 {
-	   queueElementT msg;
+	queueElementT msg;
 
-		ControlGeneralTask_Counter++;
+	ControlGeneralTask_Counter++;
 
-	   if (!(queueGet(&ListaEventos, &msg, NO_BLOCKING_QUEUE)))
-	   {
-		   ciaaPOSIX_printf("ControlGeneral Task: %d - EventID: %d value0: %d value1: %d\n", ControlGeneralTask_Counter, msg.eventID, msg.data[0], msg.data[1]);
-	   }
+	/*Checks the ListaEventos queue*/
+   if (!(queueGet(&ListaEventos, &msg, NO_BLOCKING_QUEUE)))
+   {
+	   /*A new message is in ListaEventos queue*/
+	   ciaaPOSIX_printf("ControlGeneral Task: %d - EventID: %d value0: %d value1: %d\n", ControlGeneralTask_Counter, msg.eventID, msg.data[0], msg.data[1]);
+   }
    /* end PeriodicTask */
    TerminateTask();
 }
