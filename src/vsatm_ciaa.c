@@ -74,6 +74,7 @@
 #include "inclinometro.h"
 #include "magnetometro.h"
 
+
 /*==================[macros and definitions]=================================*/
 
 /*==================[internal data declaration]==============================*/
@@ -280,6 +281,7 @@ TASK(SincronizadorTask)
    SincronizadorTask_Counter++;
    ciaaPOSIX_printf("Sincronizador Task: %d\n", SincronizadorTask_Counter);
    inclinometroUpdate();
+
    magnetometroUpdate();
    
    /* end PeriodicTask */
