@@ -186,7 +186,9 @@ TASK(InitTask)
 
    /* activate example tasks */
    Periodic_Task_Counter = 0;
-   SetRelAlarm(ActivatePeriodicTask, 200, 200);
+   SetRelAlarm(ActivateSincronizadorTask, 100, 100);
+
+   SetRelAlarm(ActivateControlGeneralTask, 120, 5);
 
    /* Activates the SerialEchoTask task */
    ActivateTask(SerialEchoTask);
@@ -239,7 +241,7 @@ TASK(SerialEchoTask)
  * This task copies the status of the inputs bits 0..3 to the output bits 0..3.
  * This task also blinks the output 4
  */
-TASK(PeriodicTask)
+TASK(SincronizadorTask)
 {
    /*
     * Example:
@@ -270,6 +272,13 @@ TASK(PeriodicTask)
    Periodic_Task_Counter++;
    ciaaPOSIX_printf("Periodic Task: %d\n", Periodic_Task_Counter);
    
+   /* end PeriodicTask */
+   TerminateTask();
+}
+
+TASK(ControlGeneralTask)
+{
+
    /* end PeriodicTask */
    TerminateTask();
 }
