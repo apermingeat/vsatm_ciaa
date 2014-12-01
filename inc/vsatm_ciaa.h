@@ -35,18 +35,29 @@
 
 #ifndef _VSATM_CIAA_H_
 #define _VSATM_CIAA_H_
-/** \brief Blinking example header file
+/** \brief VSATM-CIAA source file
  **
- ** This is a mini example of the CIAA Firmware
+ ** This is an implementation of VSATM over the CIAA Firmware.
  **
  **/
 
 /** \addtogroup CIAA_Firmware CIAA Firmware
  ** @{ */
-/** \addtogroup Examples CIAA Firmware Examples
+/** \addtogroup VSATM-CIAA
  ** @{ */
-/** \addtogroup Blinking Blinking example header file
+/** \addtogroup OS Tasks
  ** @{ */
+
+/*
+ * Initials     Name
+ * ---------------------------
+ * AP         Alejandro Permingeat
+ */
+
+/*
+ * modification history (new versions first)
+ * -----------------------------------------------------------
+ */
 
 /*
  * Initials     Name

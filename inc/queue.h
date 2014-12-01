@@ -5,6 +5,24 @@
  *      Author: alejandro
  */
 
+/** \addtogroup CIAA_Firmware CIAA Firmware
+ ** @{ */
+/** \addtogroup VSATM-CIAA
+ ** @{ */
+/** \addtogroup Queue
+ ** @{ */
+
+/*
+ * Initials     Name
+ * ---------------------------
+ * AP         Alejandro Permingeat
+ */
+
+/*
+ * modification history (new versions first)
+ * -----------------------------------------------------------
+ */
+
 #ifndef QUEUE_H_
 #define QUEUE_H_
 
@@ -39,3 +57,8 @@ uint8_t queuePut(queue_t * queue, queueElementT msg, uint8_t blocking);
 uint8_t queueGet(queue_t * queue, queueElementT *msg, uint8_t blocking);
 
 #endif /* QUEUE_H_ */
+
+/** @} doxygen end group definition */
+/** @} doxygen end group definition */
+/** @} doxygen end group definition */
+/*==================[end of file]============================================*/

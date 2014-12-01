@@ -33,34 +33,28 @@
  *
  */
 
-/** \brief Blinking example source file
+/** \brief VSATM-CIAA source file
  **
- ** This is a mini example of the CIAA Firmware.
+ ** This is an implementation of VSATM over the CIAA Firmware.
  **
  **/
 
 /** \addtogroup CIAA_Firmware CIAA Firmware
  ** @{ */
-/** \addtogroup Examples CIAA Firmware Examples
+/** \addtogroup VSATM-CIAA
  ** @{ */
-/** \addtogroup Blinking Blinking example source file
+/** \addtogroup OS Tasks
  ** @{ */
 
 /*
  * Initials     Name
  * ---------------------------
- * MaCe         Mariano Cerdeiro
- * PR           Pablo Ridolfi
- * JuCe         Juan Cecconi
- * GMuro        Gustavo Muro
+ * AP         Alejandro Permingeat
  */
 
 /*
  * modification history (new versions first)
  * -----------------------------------------------------------
- * 20141019 v0.0.2   JuCe add printf in each task,
- *                        remove trailing spaces
- * 20140731 v0.0.1   PR   first functional version
  */
 
 /*==================[inclusions]=============================================*/

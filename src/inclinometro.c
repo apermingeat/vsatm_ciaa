@@ -5,6 +5,24 @@
  *      Author: alejandro
  */
 
+/** \addtogroup CIAA_Firmware CIAA Firmware
+ ** @{ */
+/** \addtogroup VSATM-CIAA
+ ** @{ */
+/** \addtogroup Drivers
+ ** @{ */
+
+/*
+ * Initials     Name
+ * ---------------------------
+ * AP         Alejandro Permingeat
+ */
+
+/*
+ * modification history (new versions first)
+ * -----------------------------------------------------------
+ */
+
 #include "ciaaPOSIX_stdio.h"  /* <= device handler header */
 #include "ciaaPOSIX_string.h" /* <= string header */
 #include "queue.h"
@@ -29,3 +47,8 @@ void inclinometroUpdate()
 	queuePut(&ListaEventos,msg,NO_BLOCKING_QUEUE);
 
 }
+
+/** @} doxygen end group definition */
+/** @} doxygen end group definition */
+/** @} doxygen end group definition */
+/*==================[end of file]============================================*/
