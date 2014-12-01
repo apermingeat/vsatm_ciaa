@@ -33,8 +33,8 @@
  *
  */
 
-#ifndef _BLINKING_H_
-#define _BLINKING_H_
+#ifndef _VSATM_CIAA_H_
+#define _VSATM_CIAA_H_
 /** \brief Blinking example header file
  **
  ** This is a mini example of the CIAA Firmware
@@ -74,5 +74,5 @@
 /** @} doxygen end group definition */
 /** @} doxygen end group definition */
 /*==================[end of file]============================================*/
-#endif /* #ifndef _BLINKING_H_ */
+#endif /* #ifndef _VSATM_CIAA_H_ */
 
