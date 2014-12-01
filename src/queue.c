@@ -46,12 +46,12 @@ uint8_t queuePut(queue_t * queue, queueElementT msg, uint8_t blocking)
 		}
 	}
 	//insert msg in the queue
+	queue->contents[queue->rear] = msg;
 	queue->rear++;
 	if (queue->rear >= MAX_QUEUE_SIZE)
 	{
 		queue->rear = 0;
 	}
-	queue->contents[queue->rear] = msg;
 	queue->count++;
 	return(0);
 }
