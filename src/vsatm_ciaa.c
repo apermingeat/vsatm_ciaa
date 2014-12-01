@@ -73,7 +73,8 @@
 
 #include "inclinometro.h"
 #include "magnetometro.h"
-
+#include "sensorSenalRF.h"
+#include "sensorFinCarrera.h"
 
 /*==================[macros and definitions]=================================*/
 
@@ -281,9 +282,9 @@ TASK(SincronizadorTask)
    SincronizadorTask_Counter++;
    ciaaPOSIX_printf("Sincronizador Task: %d\n", SincronizadorTask_Counter);
    inclinometroUpdate();
-
    magnetometroUpdate();
-   
+   sensorSenalRFUpdate();
+   sensorFinCarreraUpdate();
    /* end PeriodicTask */
    TerminateTask();
 }
