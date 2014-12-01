@@ -29,7 +29,14 @@
 #include "eventos.h"
 #include "sensorFinCarrera.h"
 
-
+/** \brief Update Fin Carrera Vales
+ *
+ * This function updates the Fin Carrera values by reading the hardware.
+ * The read value is queued into ListaEventos queue.
+ *
+ * \returns void
+ *
+ */
 void sensorFinCarreraUpdate()
 {
 	uint8_t	sensorFinCarrera;
@@ -38,12 +45,11 @@ void sensorFinCarreraUpdate()
 	//en la variable sensorFinCarrera
 	sensorFinCarrera = 1;
 
-
-
+	/*prepare the message with updated values*/
 	msg.eventID = EV_NUEVO_VAL_SENSOR_FIN_CARRERA;
 	msg.data[0] = sensorFinCarrera;
 
-
+	/*send a message to ListaEventos queue with updated values*/
 	queuePut(&ListaEventos,msg,NO_BLOCKING_QUEUE);
 
 }
