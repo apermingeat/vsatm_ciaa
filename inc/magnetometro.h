@@ -30,7 +30,6 @@ void magnetometroUpdate();
 
 #endif /* MAGNETOMETRO_H_ */
 
-#endif /* INCLINOMETRO_H_ */
 /** @} doxygen end group definition */
 /** @} doxygen end group definition */
 /** @} doxygen end group definition */
