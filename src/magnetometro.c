@@ -1,5 +1,5 @@
 /*
- * inclinometro.c
+ * magnetometro.c
  *
  *  Created on: 01/12/2014
  *      Author: alejandro
@@ -9,20 +9,20 @@
 #include "ciaaPOSIX_string.h" /* <= string header */
 #include "queue.h"
 #include "eventos.h"
-#include "inclinometro.h"
+#include "magnetometro.h"
 
 
-void inclinometroUpdate()
+void magnetometroUpdate()
 {
 	uint8_t	gradosParteEntera, gradosParteDecimal;
 	queueElementT msg;
-	//Aqui se debe consultar al inclinometro los grados de inclinación y dejarlos
+	//Aqui se debe consultar al magnetometro los grados de inclinación y dejarlos
 	//en las variables gradosParteEntera, gradosParteDecimal
-	gradosParteEntera = 5;
-	gradosParteDecimal = 13;
+	gradosParteEntera = 87;
+	gradosParteDecimal = 4;
 
 
-	msg.eventID = EV_NUEVO_VAL_INCLINOMETRO;
+	msg.eventID = EV_NUEVO_VAL_MAGNETOMETRO;
 	msg.data[0] = gradosParteEntera;
 	msg.data[1] = gradosParteDecimal;
 

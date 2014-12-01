@@ -71,6 +71,9 @@
 #include "vsatm_ciaa.h"         /* <= own header */
 #include "queue.h"
 
+#include "inclinometro.h"
+#include "magnetometro.h"
+
 /*==================[macros and definitions]=================================*/
 
 /*==================[internal data declaration]==============================*/
@@ -193,7 +196,7 @@ TASK(InitTask)
    ControlGeneralTask_Counter = 0;
    SetRelAlarm(ActivateSincronizadorTask, 100, 100);
 
-   SetRelAlarm(ActivateControlGeneralTask, 120, 50);
+   SetRelAlarm(ActivateControlGeneralTask, 120, 20);
 
    /* Activates the SerialEchoTask task */
    ActivateTask(SerialEchoTask);
@@ -276,6 +279,8 @@ TASK(SincronizadorTask)
    /* Print Task info */
    SincronizadorTask_Counter++;
    ciaaPOSIX_printf("Sincronizador Task: %d\n", SincronizadorTask_Counter);
+   inclinometroUpdate();
+   magnetometroUpdate();
    
    /* end PeriodicTask */
    TerminateTask();
@@ -283,8 +288,14 @@ TASK(SincronizadorTask)
 
 TASK(ControlGeneralTask)
 {
-	   ControlGeneralTask_Counter++;
-	   ciaaPOSIX_printf("ControlGeneral Task: %d\n", ControlGeneralTask_Counter);
+	   queueElementT msg;
+
+		ControlGeneralTask_Counter++;
+
+	   if (!(queueGet(&ListaEventos, &msg, NO_BLOCKING_QUEUE)))
+	   {
+		   ciaaPOSIX_printf("ControlGeneral Task: %d - EventID: %d value0: %d value1: %d\n", ControlGeneralTask_Counter, msg.eventID, msg.data[0], msg.data[1]);
+	   }
    /* end PeriodicTask */
    TerminateTask();
 }
