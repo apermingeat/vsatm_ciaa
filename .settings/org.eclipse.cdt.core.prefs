@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+environment/project/0.643258360/Project/delimiter=\:
+environment/project/0.643258360/Project/operation=append
+environment/project/0.643258360/Project/value=${CIAA_Firmware_Path}/examples/blinking
+environment/project/0.643258360/append=true
+environment/project/0.643258360/appendContributed=true
