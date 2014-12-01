@@ -29,6 +29,14 @@
 #include "eventos.h"
 #include "sensorSenalRF.h"
 
+/** \brief Update RF Signal Sensor Values
+ *
+ * This function updates the RF Signal Sensor values by reading the hardware.
+ * The read value is queued into ListaEventos queue.
+ *
+ * \returns void
+ *
+ */
 
 void sensorSenalRFUpdate()
 {
@@ -39,11 +47,12 @@ void sensorSenalRFUpdate()
 	atenuacionParteEntera = -23;
 	atenuacionParteDecimal = 2;
 
-
+	/*prepare the message with updated values*/
 	msg.eventID = EV_NUEVO_VAL_SENSOR_RF;
 	msg.data[0] = atenuacionParteEntera;
 	msg.data[1] = atenuacionParteDecimal;
 
+	/*send a message to ListaEventos queue with updated values*/
 	queuePut(&ListaEventos,msg,NO_BLOCKING_QUEUE);
 
 }

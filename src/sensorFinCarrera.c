@@ -29,7 +29,7 @@
 #include "eventos.h"
 #include "sensorFinCarrera.h"
 
-/** \brief Update Fin Carrera Vales
+/** \brief Update Fin Carrera Values
  *
  * This function updates the Fin Carrera values by reading the hardware.
  * The read value is queued into ListaEventos queue.

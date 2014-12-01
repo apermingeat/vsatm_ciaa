@@ -29,7 +29,14 @@
 #include "eventos.h"
 #include "magnetometro.h"
 
-
+/** \brief Update Magnetometer Values
+ *
+ * This function updates the Magnetometer values by reading the hardware.
+ * The read value is queued into ListaEventos queue.
+ *
+ * \returns void
+ *
+ */
 void magnetometroUpdate()
 {
 	uint8_t	gradosParteEntera, gradosParteDecimal;
@@ -39,11 +46,12 @@ void magnetometroUpdate()
 	gradosParteEntera = 87;
 	gradosParteDecimal = 4;
 
-
+	/*prepare the message with updated values*/
 	msg.eventID = EV_NUEVO_VAL_MAGNETOMETRO;
 	msg.data[0] = gradosParteEntera;
 	msg.data[1] = gradosParteDecimal;
 
+	/*send a message to ListaEventos queue with updated values*/
 	queuePut(&ListaEventos,msg,NO_BLOCKING_QUEUE);
 
 }
