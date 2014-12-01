@@ -29,6 +29,14 @@
 #include "eventos.h"
 #include "inclinometro.h"
 
+/** \brief Update Inclinometer Values
+ *
+ * This function updates the Inclinometer values by reading the hardware.
+ * The read value is queued into ListaEventos queue.
+ *
+ * \returns void
+ *
+ */
 
 void inclinometroUpdate()
 {
@@ -39,11 +47,12 @@ void inclinometroUpdate()
 	gradosParteEntera = 5;
 	gradosParteDecimal = 13;
 
-
+	/*prepare the message with updated values*/
 	msg.eventID = EV_NUEVO_VAL_INCLINOMETRO;
 	msg.data[0] = gradosParteEntera;
 	msg.data[1] = gradosParteDecimal;
 
+	/*send a message to ListaEventos queue with updated values*/
 	queuePut(&ListaEventos,msg,NO_BLOCKING_QUEUE);
 
 }
