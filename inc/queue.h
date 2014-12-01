@@ -32,7 +32,9 @@ struct queue_struct
 
 typedef struct queue_struct queue_t;
 
+extern queue_t ListaEventos;
 
+void queueInit(queue_t * queue);
 uint8_t queuePut(queue_t * queue, queueElementT msg, uint8_t blocking);
 uint8_t queueGet(queue_t * queue, queueElementT *msg, uint8_t blocking);
 

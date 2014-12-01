@@ -9,6 +9,8 @@
 #include "ciaaPOSIX_string.h" /* <= string header */
 #include "queue.h"
 
+queue_t ListaEventos;
+
 void queueInit(queue_t * queue)
 {
 	queue->front = 0;

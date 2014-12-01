@@ -69,6 +69,7 @@
 #include "ciaaPOSIX_string.h" /* <= string header */
 #include "ciaak.h"            /* <= ciaa kernel header */
 #include "vsatm_ciaa.h"         /* <= own header */
+#include "queue.h"
 
 /*==================[macros and definitions]=================================*/
 
@@ -104,7 +105,8 @@ static int32_t fd_uart2;
 /** \brief Periodic Task Counter
  *
  */
-static uint32_t Periodic_Task_Counter;
+static uint32_t SincronizadorTask_Counter;
+static uint32_t ControlGeneralTask_Counter;
 
 /*==================[external data definition]===============================*/
 
@@ -184,11 +186,14 @@ TASK(InitTask)
    /* change FIFO TRIGGER LEVEL for uart usb */
    ciaaPOSIX_ioctl(fd_uart1, ciaaPOSIX_IOCTL_SET_FIFO_TRIGGER_LEVEL, (void *)ciaaFIFO_TRIGGER_LEVEL3);
 
+   queueInit(&ListaEventos);
+
    /* activate example tasks */
-   Periodic_Task_Counter = 0;
+   SincronizadorTask_Counter = 0;
+   ControlGeneralTask_Counter = 0;
    SetRelAlarm(ActivateSincronizadorTask, 100, 100);
 
-   SetRelAlarm(ActivateControlGeneralTask, 120, 5);
+   SetRelAlarm(ActivateControlGeneralTask, 120, 50);
 
    /* Activates the SerialEchoTask task */
    ActivateTask(SerialEchoTask);
@@ -269,8 +274,8 @@ TASK(SincronizadorTask)
    ciaaPOSIX_write(fd_out, &outputs, 1);
 
    /* Print Task info */
-   Periodic_Task_Counter++;
-   ciaaPOSIX_printf("Periodic Task: %d\n", Periodic_Task_Counter);
+   SincronizadorTask_Counter++;
+   ciaaPOSIX_printf("Sincronizador Task: %d\n", SincronizadorTask_Counter);
    
    /* end PeriodicTask */
    TerminateTask();
@@ -278,7 +283,8 @@ TASK(SincronizadorTask)
 
 TASK(ControlGeneralTask)
 {
-
+	   ControlGeneralTask_Counter++;
+	   ciaaPOSIX_printf("ControlGeneral Task: %d\n", ControlGeneralTask_Counter);
    /* end PeriodicTask */
    TerminateTask();
 }

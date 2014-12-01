@@ -98,7 +98,7 @@ ALARM ActivateSincronizadorTask {
 }
 
 TASK ControlGeneralTask {
-    PRIORITY = 10;
+    PRIORITY = 9;
     ACTIVATION = 1;
     STACK = 512;
     TYPE = EXTENDED;
