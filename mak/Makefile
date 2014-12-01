@@ -34,9 +34,9 @@
 #
 ###############################################################################
 # Project Name: used for Project Path and OSEK configuration file
-project 			 	 = blinking
+project 			 	 = vsatm_ciaa
 # Project path
-$(project)_PATH   	 = $(ROOT_DIR)$(DS)examples$(DS)$(project)
+$(project)_PATH   	 = /home/alejandro/git/vsatm_ciaa
 # source path
 $(project)_SRC_PATH  += $($(project)_PATH)$(DS)src
 # include path
